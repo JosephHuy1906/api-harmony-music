@@ -6,7 +6,7 @@
     "type": "commonjs",
     "scripts": {
         "test": "",
-        "start": "nodemon --exec npx ts-node src/index.ts",
+        "start": "nodemon src/index.ts",
         "build": "",
         "dev": "nodemon src/index.ts",
         "insert-db": "ts-node src/migrations/index.migration.ts",
