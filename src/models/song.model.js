@@ -59,10 +59,6 @@ class SongModel {
         const created = await song_schema_1.default.create(payload);
         return created;
     }
-    static async update(_id, payload) {
-        const updated = await song_schema_1.default.findByIdAndUpdate(_id, payload);
-        return updated;
-    }
     static async forceDelete(id) {
         const forceDelete = await song_schema_1.default.findByIdAndDelete(id);
         return forceDelete;

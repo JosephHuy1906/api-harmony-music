@@ -18,6 +18,7 @@ const composer_model_1 = __importDefault(require("@/models/composer.model"));
 const genre_service_1 = __importDefault(require("./genre.service"));
 const album_service_1 = __importDefault(require("./album.service"));
 const composer_service_1 = __importDefault(require("./composer.service"));
+const pathSystemLinux_util_1 = require("@/utils/pathSystemLinux.util");
 class SongService {
     static async getAll() {
         try {
@@ -192,11 +193,11 @@ class SongService {
                 return songInValid;
             const createThumbnail = await thumbnail_model_1.default.create({
                 _id: (0, uuid_1.v4)(),
-                path: files.thumbnail.path.split('harmony-server/')[1],
+                path: (0, pathSystemLinux_util_1.pathFromSystem)(files.thumbnail.path, process.platform),
             });
             const createSongPath = await songPath_model_1.default.create({
                 _id: (0, uuid_1.v4)(),
-                path: files.fileSong.path.split('harmony-server/')[1],
+                path: (0, pathSystemLinux_util_1.pathFromSystem)(files.fileSong.path, process.platform),
                 size: fileSongInfo.format.size,
                 type: files.fileSong.mimetype,
             });
@@ -235,43 +236,6 @@ class SongService {
                 status: 500,
                 success: false,
                 message: 'POST_SONG_FAILED',
-                errors: error,
-            };
-        }
-    }
-    static async update(_id, title, composerReference, files, songPathReference, thumbnail) {
-        try {
-            const song = await song_model_1.default.getById(_id);
-            const composer = await composer_model_1.default.getById(composerReference);
-            if (!song) {
-                return {
-                    status: 401,
-                    success: false,
-                    message: 'SONG_ID_NOT_EXIST'
-                };
-            }
-            if (!composer) {
-                (0, deleteFile_helper_1.default)(files.fileSong);
-                (0, deleteFile_helper_1.default)(files.thumbnail);
-                return {
-                    status: 400,
-                    success: false,
-                    message: 'COMPOSER_NOT_EXIST',
-                };
-            }
-            else if (composerReference !== song?.songPathReference) {
-            }
-            return {
-                status: 204,
-                success: true,
-                message: 'PUT_SONG_SUCCESSFULLY',
-            };
-        }
-        catch (error) {
-            return {
-                status: 500,
-                success: false,
-                message: 'PUT_SONG_FAILED',
                 errors: error,
             };
         }

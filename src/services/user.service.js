@@ -8,10 +8,30 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const nodemailer_config_1 = __importDefault(require("@/configs/nodemailer.config"));
 const accountPendingVerify_model_1 = __importDefault(require("@/models/accountPendingVerify.model"));
 const user_model_1 = __importDefault(require("@/models/user.model"));
-const generateToken_util_1 = __importDefault(require("@/utils/generateToken.util"));
+const jwtToken_util_1 = require("@/utils/jwtToken.util");
 const user_filter_1 = __importDefault(require("@/filters/user.filter"));
 const validate_helper_1 = __importDefault(require("@/helpers/validate.helper"));
+const role_enum_1 = require("@/constraints/enums/role.enum");
 class UserService {
+    static async getById(_id) {
+        try {
+            const user = await user_model_1.default.getById(_id);
+            return {
+                status: 200,
+                success: true,
+                message: 'GET_USER_SUCCESSFULLY',
+                data: user,
+            };
+        }
+        catch (error) {
+            return {
+                status: 404,
+                success: false,
+                message: 'GET_USER_BY_ID_FAILED',
+                errors: error,
+            };
+        }
+    }
     static async checkEmail(email) {
         try {
             const userInDb = await user_model_1.default.getByEmail(email);
@@ -81,9 +101,10 @@ class UserService {
                     message: 'EMAIL_NOT_FOUND',
                 };
             const _id = (0, uuid_1.v4)();
-            const { accessToken, refreshToken } = (0, generateToken_util_1.default)({
+            const { accessToken, refreshToken } = (0, jwtToken_util_1.generateToken)({
                 _id,
                 email: collectionValidateUser.email,
+                role: role_enum_1.RoleConstant.USER,
             });
             const dataUser = new user_filter_1.default({
                 _id,
@@ -119,6 +140,26 @@ class UserService {
                 status: 500,
                 success: false,
                 message: 'SIGN_UP_FORM_FAILED',
+                errors: error,
+            };
+        }
+    }
+    static async updateFiled(_id, payload) {
+        try {
+            const updatedUser = await user_model_1.default.updateById(_id, payload);
+            return {
+                status: 200,
+                success: true,
+                message: 'UPDATE_USER_SUCCESSFULLY',
+                data: updatedUser,
+            };
+        }
+        catch (error) {
+            console.log(error);
+            return {
+                status: 500,
+                success: false,
+                message: 'UPDATE_USER_FAILED',
                 errors: error,
             };
         }

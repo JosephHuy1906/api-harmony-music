@@ -15,6 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const index_decorator_1 = require("@/decorators/index.decorator");
 const auth_service_1 = __importDefault(require("@/services/auth.service"));
 class AuthController {
+    static async generateRefreshToken(req, res) {
+        const { refreshToken } = req.body;
+        const refererTokenService = await auth_service_1.default.generateRefererToken(refreshToken);
+        return res.status(refererTokenService.status).json(refererTokenService);
+    }
     static async loginForm(req, res) {
         const payload = req.body;
         const loginService = await auth_service_1.default.loginForm(payload);
@@ -27,6 +32,12 @@ class AuthController {
     }
 }
 exports.default = AuthController;
+__decorate([
+    (0, index_decorator_1.IsRequirementReq)('refreshToken', 'body'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], AuthController, "generateRefreshToken", null);
 __decorate([
     (0, index_decorator_1.IsRequirementReq)(['email', 'password'], 'body'),
     (0, index_decorator_1.IsRequirementEmail)('email'),
