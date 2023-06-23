@@ -14,7 +14,7 @@ const role_enum_1 = require("../constraints/enums/role.enum");
 passport_1.default.use(new passport_facebook_1.Strategy({
     clientID: process.env.FACEBOOK_CLIENT_ID,
     clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-    callbackURL: '/api/v1/auth/facebook/callback',
+    callbackURL: 'https://hamony-music-web.onrender.com/api/v1/auth/facebook/callback',
     profileFields: ['id', 'displayName', 'photos', 'email'],
 }, async function (accessTokens, refreshTokens, profile, cb) {
     const email = profile._json.email;
