@@ -202,7 +202,7 @@ class SongService {
                 type: files.fileSong.mimetype,
             });
             Object.assign(songFilter, {
-                thumbnail: `${process.env.SERVER_URL}:${process.env.PORT_SERVER}/api/v1/thumbnail/${createThumbnail._id}`,
+                thumbnail: `${process.env.SERVER_URL}/api/v1/thumbnail/${createThumbnail._id}`,
                 songPathReference: createSongPath._id,
             });
             const createdSong = await song_model_1.default.create(songFilter);
