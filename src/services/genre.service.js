@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const uuid_1 = require("uuid");
-const genre_model_1 = __importDefault(require("@/models/genre.model"));
+const genre_model_1 = __importDefault(require("../models/genre.model"));
 class GenreService {
     static async create(payload) {
         try {

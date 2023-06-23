@@ -7,9 +7,9 @@ const passport_1 = __importDefault(require("passport"));
 const passport_facebook_1 = require("passport-facebook");
 const uuid_1 = require("uuid");
 const dotenv_1 = require("dotenv");
-const user_model_1 = __importDefault(require("@/models/user.model"));
-const jwtToken_util_1 = require("@/utils/jwtToken.util");
-const role_enum_1 = require("@/constraints/enums/role.enum");
+const user_model_1 = __importDefault(require("../models/user.model"));
+const jwtToken_util_1 = require("../utils/jwtToken.util");
+const role_enum_1 = require("../constraints/enums/role.enum");
 (0, dotenv_1.config)();
 passport_1.default.use(new passport_facebook_1.Strategy({
     clientID: process.env.FACEBOOK_CLIENT_ID,

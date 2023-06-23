@@ -12,8 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_decorator_1 = require("@/decorators/index.decorator");
-const user_service_1 = __importDefault(require("@/services/user.service"));
+const index_decorator_1 = require("../decorators/index.decorator");
+const user_service_1 = __importDefault(require("../services/user.service"));
 class UserController {
     static async checkGmail(req, res, next) {
         const { email } = req.body;

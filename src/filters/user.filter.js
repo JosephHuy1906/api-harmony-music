@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require("module-alias/register");
 const class_validator_1 = require("class-validator");
-const IsGenerateCollection_decorator_1 = __importDefault(require("@/decorators/IsGenerateCollection.decorator"));
+const IsGenerateCollection_decorator_1 = __importDefault(require("../decorators/IsGenerateCollection.decorator"));
 class UserValidation {
     _id;
     email;

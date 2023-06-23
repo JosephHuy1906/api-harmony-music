@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const fluentFfmpeg_config_1 = __importDefault(require("@/configs/fluentFfmpeg.config"));
+const fluentFfmpeg_config_1 = __importDefault(require("../configs/fluentFfmpeg.config"));
 class SongRepository {
     static async getInformationFileSong(file) {
         return new Promise((resolve, reject) => {

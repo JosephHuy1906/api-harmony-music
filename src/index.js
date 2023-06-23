@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 require("module-alias/register");
 const dotenv_1 = require("dotenv");
 const morgan_1 = __importDefault(require("morgan"));
-const index_route_1 = __importDefault(require("@/routes/index.route"));
+const index_route_1 = __importDefault(require("./routes/index.route"));
 const connect_db_1 = __importDefault(require("./database/connect.db"));
 (0, dotenv_1.config)();
 const PORT_SERVER = process.env.PORT_SERVER || 5000;

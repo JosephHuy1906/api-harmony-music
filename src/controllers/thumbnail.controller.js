@@ -12,8 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_decorator_1 = require("@/decorators/index.decorator");
-const thumbnail_service_1 = __importDefault(require("@/services/thumbnail.service"));
+const index_decorator_1 = require("../decorators/index.decorator");
+const thumbnail_service_1 = __importDefault(require("../services/thumbnail.service"));
 class ThumbnailController {
     static async getById(req, res) {
         const slugId = req.params.id;

@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const multer_1 = __importDefault(require("multer"));
 const path_1 = __importDefault(require("path"));
-const index_enum_1 = require("@/constraints/enums/index.enum");
+const index_enum_1 = require("../constraints/enums/index.enum");
 const diskStorageConfig = multer_1.default.diskStorage({
     destination: function (req, file, cb) {
         switch (file.fieldname) {

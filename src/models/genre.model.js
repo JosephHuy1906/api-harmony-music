@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const genre_schema_1 = __importDefault(require("@/database/schemas/genre.schema"));
+const genre_schema_1 = __importDefault(require("../database/schemas/genre.schema"));
 class GenreModel {
     static async getByTitle(title) {
         const genreByTitle = await genre_schema_1.default.findOne({

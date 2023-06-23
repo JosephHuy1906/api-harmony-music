@@ -7,18 +7,18 @@ const dotenv_1 = require("dotenv");
 (0, dotenv_1.config)();
 const fs_1 = __importDefault(require("fs"));
 const uuid_1 = require("uuid");
-const song_repository_1 = __importDefault(require("@/repositories/song.repository"));
-const song_filter_1 = __importDefault(require("@/filters/song.filter"));
-const validate_helper_1 = __importDefault(require("@/helpers/validate.helper"));
-const deleteFile_helper_1 = __importDefault(require("@/helpers/deleteFile.helper"));
-const thumbnail_model_1 = __importDefault(require("@/models/thumbnail.model"));
-const songPath_model_1 = __importDefault(require("@/models/songPath.model"));
-const song_model_1 = __importDefault(require("@/models/song.model"));
-const composer_model_1 = __importDefault(require("@/models/composer.model"));
+const song_repository_1 = __importDefault(require("../repositories/song.repository"));
+const song_filter_1 = __importDefault(require("../filters/song.filter"));
+const validate_helper_1 = __importDefault(require("../helpers/validate.helper"));
+const deleteFile_helper_1 = __importDefault(require("../helpers/deleteFile.helper"));
+const thumbnail_model_1 = __importDefault(require("../models/thumbnail.model"));
+const songPath_model_1 = __importDefault(require("../models/songPath.model"));
+const song_model_1 = __importDefault(require("../models/song.model"));
+const composer_model_1 = __importDefault(require("../models/composer.model"));
 const genre_service_1 = __importDefault(require("./genre.service"));
 const album_service_1 = __importDefault(require("./album.service"));
 const composer_service_1 = __importDefault(require("./composer.service"));
-const pathSystemLinux_util_1 = require("@/utils/pathSystemLinux.util");
+const pathSystemLinux_util_1 = require("../utils/pathSystemLinux.util");
 class SongService {
     static async getAll() {
         try {

@@ -12,9 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_decorator_1 = require("@/decorators/index.decorator");
-const song_service_1 = __importDefault(require("@/services/song.service"));
-const index_enum_1 = require("@/constraints/enums/index.enum");
+const index_decorator_1 = require("../decorators/index.decorator");
+const song_service_1 = __importDefault(require("../services/song.service"));
+const index_enum_1 = require("../constraints/enums/index.enum");
 const requirementFields = [
     'title',
     'composerReference',

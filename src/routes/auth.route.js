@@ -4,10 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const auth_controller_1 = __importDefault(require("@/controllers/auth.controller"));
+const auth_controller_1 = __importDefault(require("../controllers/auth.controller"));
 const passport_1 = __importDefault(require("passport"));
-require("@/configs/passportGoogle.config");
-require("@/configs/passportFacebook.config");
+require("../configs/passportGoogle.config");
+require("../configs/passportFacebook.config");
 const router = (0, express_1.Router)();
 router.post('/refreshToken', auth_controller_1.default.generateRefreshToken);
 router.post('/loginForm', auth_controller_1.default.loginForm);

@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.uploadSong = void 0;
 const multer_1 = __importDefault(require("multer"));
-const index_enum_1 = require("@/constraints/enums/index.enum");
-const multer_util_1 = __importDefault(require("@/utils/multer.util"));
-const deleteFile_helper_1 = __importDefault(require("@/helpers/deleteFile.helper"));
+const index_enum_1 = require("../constraints/enums/index.enum");
+const multer_util_1 = __importDefault(require("../utils/multer.util"));
+const deleteFile_helper_1 = __importDefault(require("../helpers/deleteFile.helper"));
 function uploadSong(req, res, next) {
     const handleErroring = multer_util_1.default.fields([
         {

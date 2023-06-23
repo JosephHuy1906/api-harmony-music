@@ -7,9 +7,9 @@ const passport_1 = __importDefault(require("passport"));
 const passport_google_oauth20_1 = require("passport-google-oauth20");
 const uuid_1 = require("uuid");
 const dotenv_1 = require("dotenv");
-const user_model_1 = __importDefault(require("@/models/user.model"));
-const jwtToken_util_1 = require("@/utils/jwtToken.util");
-const role_enum_1 = require("@/constraints/enums/role.enum");
+const user_model_1 = __importDefault(require("../models/user.model"));
+const jwtToken_util_1 = require("../utils/jwtToken.util");
+const role_enum_1 = require("../constraints/enums/role.enum");
 (0, dotenv_1.config)();
 passport_1.default.use(new passport_google_oauth20_1.Strategy({
     clientID: process.env.GOOGLE_CLIENT_ID,

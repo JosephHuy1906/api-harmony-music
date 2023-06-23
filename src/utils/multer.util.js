@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const multer_1 = __importDefault(require("multer"));
-const multer_config_1 = __importDefault(require("@/configs/multer.config"));
-const index_enum_1 = require("@/constraints/enums/index.enum");
+const multer_config_1 = __importDefault(require("../configs/multer.config"));
+const index_enum_1 = require("../constraints/enums/index.enum");
 const upload = (0, multer_1.default)({
     storage: multer_config_1.default,
     fileFilter(req, file, callback) {

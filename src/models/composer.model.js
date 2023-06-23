@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const composer_schema_1 = __importDefault(require("@/database/schemas/composer.schema"));
+const composer_schema_1 = __importDefault(require("../database/schemas/composer.schema"));
 class ComposerModel {
     static async getComposerByUserId(id) {
         const composer = await composer_schema_1.default.findOne({ userReference: id });

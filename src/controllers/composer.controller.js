@@ -12,8 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_decorator_1 = require("@/decorators/index.decorator");
-const composer_service_1 = __importDefault(require("@/services/composer.service"));
+const index_decorator_1 = require("../decorators/index.decorator");
+const composer_service_1 = __importDefault(require("../services/composer.service"));
 class ComposerController {
     static async create(req, res) {
         const payload = req.body;

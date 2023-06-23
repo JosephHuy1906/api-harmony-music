@@ -6,14 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require('dotenv').config();
 require("module-alias/register");
 const process_1 = require("process");
-const song_migration_1 = __importDefault(require("@/migrations/song.migration"));
-const composer_migration_1 = __importDefault(require("@/migrations/composer.migration"));
-const user_migration_1 = __importDefault(require("@/migrations/user.migration"));
-const songPath_migration_1 = __importDefault(require("@/migrations/songPath.migration"));
-const genre_migration_1 = __importDefault(require("@/migrations/genre.migration"));
-const album_migration_1 = __importDefault(require("@/migrations/album.migration"));
-const thumbnail_migration_1 = __importDefault(require("@/migrations/thumbnail.migration"));
-const connect_db_1 = __importDefault(require("@/database/connect.db"));
+const song_migration_1 = __importDefault(require("../migrations/song.migration"));
+const composer_migration_1 = __importDefault(require("../migrations/composer.migration"));
+const user_migration_1 = __importDefault(require("../migrations/user.migration"));
+const songPath_migration_1 = __importDefault(require("../migrations/songPath.migration"));
+const genre_migration_1 = __importDefault(require("../migrations/genre.migration"));
+const album_migration_1 = __importDefault(require("../migrations/album.migration"));
+const thumbnail_migration_1 = __importDefault(require("../migrations/thumbnail.migration"));
+const connect_db_1 = __importDefault(require("../database/connect.db"));
 const createCollection = async () => {
     try {
         const db = await connect_db_1.default.connect();

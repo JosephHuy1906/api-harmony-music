@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = __importDefault(require("path"));
-const thumbnail_model_1 = __importDefault(require("@/models/thumbnail.model"));
-const thumbnail_repository_1 = __importDefault(require("@/repositories/thumbnail.repository"));
+const thumbnail_model_1 = __importDefault(require("../models/thumbnail.model"));
+const thumbnail_repository_1 = __importDefault(require("../repositories/thumbnail.repository"));
 class ThumbnailService {
     static async getThumbnail(slugId, resize) {
         try {

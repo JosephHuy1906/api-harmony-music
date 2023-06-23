@@ -5,13 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const uuid_1 = require("uuid");
 const bcrypt_1 = __importDefault(require("bcrypt"));
-const nodemailer_config_1 = __importDefault(require("@/configs/nodemailer.config"));
-const accountPendingVerify_model_1 = __importDefault(require("@/models/accountPendingVerify.model"));
-const user_model_1 = __importDefault(require("@/models/user.model"));
-const jwtToken_util_1 = require("@/utils/jwtToken.util");
-const user_filter_1 = __importDefault(require("@/filters/user.filter"));
-const validate_helper_1 = __importDefault(require("@/helpers/validate.helper"));
-const role_enum_1 = require("@/constraints/enums/role.enum");
+const nodemailer_config_1 = __importDefault(require("../configs/nodemailer.config"));
+const accountPendingVerify_model_1 = __importDefault(require("../models/accountPendingVerify.model"));
+const user_model_1 = __importDefault(require("../models/user.model"));
+const jwtToken_util_1 = require("../utils/jwtToken.util");
+const user_filter_1 = __importDefault(require("../filters/user.filter"));
+const validate_helper_1 = __importDefault(require("../helpers/validate.helper"));
+const role_enum_1 = require("../constraints/enums/role.enum");
 class UserService {
     static async getById(_id) {
         try {

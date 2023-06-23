@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const accountPendingVerify_model_1 = __importDefault(require("@/models/accountPendingVerify.model"));
-const user_model_1 = __importDefault(require("@/models/user.model"));
+const accountPendingVerify_model_1 = __importDefault(require("../models/accountPendingVerify.model"));
+const user_model_1 = __importDefault(require("../models/user.model"));
 async function verificationEmailWithForm(req, res, next) {
     try {
         const payload = req.body;
