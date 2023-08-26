@@ -12,31 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const IsGenerateCollection_decorator_1 = __importDefault(require("../decorators/IsGenerateCollection.decorator"));
+const IsGenerateCollection_decorator_1 = __importDefault(require("@/decorators/IsGenerateCollection.decorator"));
 const class_validator_1 = require("class-validator");
 class SongFilter {
-    _id;
-    title;
-    thumbnail;
-    publish;
-    duration;
-    songPathReference;
-    composerReference;
-    albumReference;
-    genresReference;
-    performers;
-    views;
     constructor(params) {
         this._id = params._id;
         this.title = params.title;
         this.albumReference = params.albumReference;
-        this.composerReference = params.composerReference;
-        this.duration = params.duration;
+        this.userReference = params.userReference;
         this.genresReference = params.genresReference;
         this.performers = params.performers;
         this.publish = params.publish;
         this.thumbnail = params.thumbnail;
-        this.songPathReference = params.songPathReference;
+        this.thumbnailUrl = params.thumbnailUrl;
+        this.audio = params.audio;
         this.views = params.views;
     }
 }
@@ -55,7 +44,7 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], SongFilter.prototype, "thumbnail", void 0);
+], SongFilter.prototype, "thumbnailUrl", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsDateString)(),
@@ -63,22 +52,20 @@ __decorate([
 ], SongFilter.prototype, "publish", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", Number)
-], SongFilter.prototype, "duration", void 0);
+    (0, class_validator_1.IsObject)(),
+    __metadata("design:type", Object)
+], SongFilter.prototype, "thumbnail", void 0);
 __decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, IsGenerateCollection_decorator_1.default)({
-        message: 'Property songPathId missing key _id',
-    }),
-    __metadata("design:type", String)
-], SongFilter.prototype, "songPathReference", void 0);
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsObject)(),
+    __metadata("design:type", Object)
+], SongFilter.prototype, "audio", void 0);
 __decorate([
     (0, IsGenerateCollection_decorator_1.default)({
         message: 'Property composerId missing key _id',
     }),
     __metadata("design:type", String)
-], SongFilter.prototype, "composerReference", void 0);
+], SongFilter.prototype, "userReference", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     (0, IsGenerateCollection_decorator_1.default)({
@@ -103,3 +90,4 @@ __decorate([
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Object)
 ], SongFilter.prototype, "views", void 0);
+//# sourceMappingURL=song.filter.js.map

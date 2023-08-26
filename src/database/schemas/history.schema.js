@@ -26,6 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
 const historySchema = new mongoose_1.Schema({
     _id: { type: String, required: true },
+    userReference: { type: String, required: true },
     listSong: [
         {
             type: String,
@@ -34,5 +35,7 @@ const historySchema = new mongoose_1.Schema({
     ],
 }, {
     _id: false,
+    timestamps: true,
 });
 exports.default = mongoose_1.default.model('history', historySchema);
+//# sourceMappingURL=history.schema.js.map

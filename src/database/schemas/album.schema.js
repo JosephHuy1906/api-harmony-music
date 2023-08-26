@@ -29,7 +29,17 @@ const albumSchema = new mongoose_1.Schema({
     title: { type: String, required: true },
     publish: { type: Date, required: true },
     information: { type: String, default: '' },
-    composerReference: { type: String, required: true, ref: 'composer' },
+    thumbnailUrl: { type: String, default: null },
+    thumbnail: {
+        type: {
+            bucketName: { type: String, required: true },
+            keyObject: { type: String, required: true },
+            contentType: { type: String, required: true },
+        },
+        default: null,
+        _id: false,
+    },
+    userReference: { type: String, required: true, ref: 'user' },
     listSong: [
         {
             type: String,
@@ -41,3 +51,4 @@ const albumSchema = new mongoose_1.Schema({
     timestamps: true,
 });
 exports.default = mongoose_1.default.model('album', albumSchema);
+//# sourceMappingURL=album.schema.js.map

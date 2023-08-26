@@ -23,30 +23,50 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const role_enum_1 = require("@/constraints/enums/role.enum");
 const mongoose_1 = __importStar(require("mongoose"));
 const userSchema = new mongoose_1.Schema({
     _id: { type: String, required: true },
     name: { type: String, required: true, maxlength: 40 },
     email: { type: String, required: true },
-    avatar: {
+    avatarUrl: {
         type: String,
         default: 'https://fullstack.edu.vn/static/media/fallback-avatar.155cdb2376c5d99ea151.jpg',
     },
+    avatarS3: {
+        type: {
+            bucketName: { type: String, required: true },
+            keyObject: { type: String, required: true },
+            contentType: { type: String, required: true },
+        },
+        default: null,
+        _id: false,
+    },
     locale: { type: String, default: 'vi' },
     refreshToken: { type: String, required: true },
-    playlistReference: [
-        {
-            type: String,
-            ref: 'playlist',
-        },
-    ],
     favoriteListReference: { type: String, ref: 'favorite' },
     historyReference: { type: String, ref: 'history' },
-    composerReference: { type: String, ref: 'composer' },
+    role: { type: String, default: role_enum_1.RoleConstant.USER },
     isRegistrationForm: { type: Boolean, default: false },
     password: { type: String, default: null },
+    playlistReference: [{ type: String, ref: 'playlist' }],
+    nickname: { type: String, default: '' },
+    isPendingUpgradeComposer: { type: Boolean, default: false },
+    albumsReference: [
+        {
+            type: String,
+            ref: 'album',
+        },
+    ],
+    songsReference: [
+        {
+            type: String,
+            ref: 'song',
+        },
+    ],
 }, {
     _id: false,
     timestamps: true,
 });
 exports.default = mongoose_1.default.model('user', userSchema);
+//# sourceMappingURL=user.schema.js.map

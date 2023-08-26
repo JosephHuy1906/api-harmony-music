@@ -4,6 +4,7 @@ exports.RoleConstant = void 0;
 var RoleConstant;
 (function (RoleConstant) {
     RoleConstant["USER"] = "user";
-    RoleConstant["ROOT_ADMIN"] = "root_admin";
     RoleConstant["COMPOSER"] = "composer";
+    RoleConstant["ROOT_ADMIN"] = "root_admin";
 })(RoleConstant || (exports.RoleConstant = RoleConstant = {}));
+//# sourceMappingURL=role.enum.js.map

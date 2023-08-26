@@ -26,13 +26,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
 const adminSchema = new mongoose_1.Schema({
     _id: { type: String, required: true },
+    password: { type: String, required: true },
     name: { type: String, required: true },
     email: { type: String, required: true },
     refreshToken: { type: String, required: true },
-    role: { type: Number, required: true },
-    password: { type: String, required: true },
+    role: { type: String, required: true },
+    avatar: {
+        type: String,
+        default: 'https://fullstack.edu.vn/static/media/fallback-avatar.155cdb2376c5d99ea151.jpg',
+    },
 }, {
     _id: false,
     timestamps: true,
 });
 exports.default = mongoose_1.default.model('admin', adminSchema);
+//# sourceMappingURL=admin.schema.js.map

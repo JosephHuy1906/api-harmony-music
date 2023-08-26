@@ -1,60 +1,75 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.IsRequirementEmail = exports.IsRequirementFiles = exports.IsRequirementReq = exports.IsRequirementTypeId = void 0;
-const regex_util_1 = require("../utils/regex.util");
-const deleteFile_helper_1 = __importDefault(require("../helpers/deleteFile.helper"));
+exports.IsRequirementEmail = exports.IsRequirementReq = exports.IsRequirementTypeId = void 0;
+const regex_util_1 = require("@/utils/regex.util");
 function IsRequirementTypeId(key, scope) {
     return function (target, propertyKey, descriptor) {
         const originalMethod = descriptor.value;
         descriptor.value = function (...args) {
             const [req, res, next] = args;
             try {
-                let payload = req.body;
-                switch (scope) {
-                    case 'body':
-                        payload = req.body;
-                        break;
-                    case 'params':
-                        payload = req.params;
-                        break;
-                    case 'query':
-                        payload = req.query;
-                        break;
+                const payload = req[scope];
+                switch (typeof key) {
+                    case 'string':
+                        const condition = (0, regex_util_1.regexUuidV4Validation)(payload[key]);
+                        return condition
+                            ? originalMethod.apply(this, args)
+                            : res.status(400).json({
+                                status: 400,
+                                success: false,
+                                message: 'BAD_REQUEST_REQUIRE_ID_TYPE',
+                            });
+                    case 'object':
+                        const mapping = [];
+                        let flagInValidArray = [];
+                        const reducePayload = Object.entries(payload).reduce((acc, cur, index) => {
+                            const [keyId, value] = cur;
+                            if (key.indexOf(keyId) !== -1) {
+                                acc[keyId] = value;
+                                flagInValidArray.push(Array.isArray(value)
+                                    ? value.length > 0
+                                    : !!value);
+                            }
+                            return acc;
+                        }, {});
+                        if (flagInValidArray.includes(false))
+                            return res.status(400).json({
+                                status: 400,
+                                success: false,
+                                message: 'BAD_REQUEST_REQUIRE_ID_TYPE',
+                            });
+                        Object.entries(reducePayload).forEach(([keyId, value]) => {
+                            if (key.indexOf(keyId) !== -1) {
+                                if (typeof value === 'string' &&
+                                    value.trim().startsWith(`[`)) {
+                                    const parseFormDataStringId = JSON.parse(value);
+                                    parseFormDataStringId.forEach((id) => {
+                                        mapping.push(id.trim());
+                                    });
+                                }
+                                else if (Array.isArray(value)) {
+                                    value.forEach((id) => mapping.push(id.trim()));
+                                }
+                                else {
+                                    mapping.push(value.trim());
+                                }
+                            }
+                        });
+                        const isPassed = mapping.every((currentValue) => (0, regex_util_1.regexUuidV4Validation)(currentValue));
+                        return isPassed
+                            ? originalMethod.apply(this, args)
+                            : res.status(400).json({
+                                status: 400,
+                                success: false,
+                                message: 'BAD_REQUEST_REQUIRE_ID_TYPE',
+                            });
                     default:
-                        throw new Error('Required type request');
+                        return res.status(400).json({
+                            status: 400,
+                            success: false,
+                            message: 'BAD_REQUEST_REQUIRE_ID_TYPE',
+                        });
                 }
-                if (typeof key === 'string') {
-                    if ((0, regex_util_1.regexUuidV4Validation)(payload[key])) {
-                        return originalMethod.apply(this, args);
-                    }
-                }
-                else {
-                    const mapping = [];
-                    Object.entries(payload).forEach(([keyId, value]) => {
-                        if (key.indexOf(keyId) !== -1) {
-                            mapping.push(value.trim());
-                        }
-                    });
-                    const isPassed = mapping.every((currentValue) => (0, regex_util_1.regexUuidV4Validation)(currentValue));
-                    if (isPassed) {
-                        const result = originalMethod.apply(this, args);
-                        return result;
-                    }
-                }
-                const files = req.files;
-                if (Object.keys(files).length > 0) {
-                    for (const keyFile in files) {
-                        (0, deleteFile_helper_1.default)(files[keyFile][0]);
-                    }
-                }
-                return res.status(400).json({
-                    status: 400,
-                    success: false,
-                    message: 'BAD_REQUEST_REQUIRE_ID_TYPE',
-                });
             }
             catch (error) {
                 console.log(error);
@@ -75,38 +90,34 @@ function IsRequirementReq(key, scope) {
         descriptor.value = function (...args) {
             const [req, res, next] = args;
             try {
-                let payload = req.body;
-                switch (scope) {
-                    case 'body':
-                        payload = req.body;
-                        break;
-                    case 'params':
-                        payload = req.params;
-                        break;
-                    case 'query':
-                        payload = req.query;
-                        break;
+                const payload = req[scope];
+                switch (typeof key) {
+                    case 'string':
+                        const condition = key in payload && !!payload[key];
+                        return condition
+                            ? originalMethod.apply(this, args)
+                            : res.status(400).json({
+                                status: 400,
+                                success: false,
+                                message: `BAD_REQUEST_REQUIRE_NOT_NULL_"${key}"`,
+                            });
+                    case 'object':
+                        const isPassed = key.every((currentValue) => currentValue in payload &&
+                            !!payload[currentValue]);
+                        return isPassed
+                            ? originalMethod.apply(this, args)
+                            : res.status(400).json({
+                                status: 400,
+                                success: false,
+                                message: `BAD_REQUEST_REQUIRE_NOT_NULL_"${key}"`,
+                            });
                     default:
-                        throw new Error('Required type request');
+                        return res.status(400).json({
+                            status: 400,
+                            success: false,
+                            message: `BAD_REQUEST_REQUIRE_NOT_NULL_"${key}"`,
+                        });
                 }
-                if (typeof key === 'string') {
-                    if (key in payload && !!payload[key]) {
-                        const result = originalMethod.apply(this, args);
-                        return result;
-                    }
-                }
-                else {
-                    const isPassed = key.every((currentValue) => currentValue in payload && !!payload[currentValue]);
-                    if (isPassed) {
-                        const result = originalMethod.apply(this, args);
-                        return result;
-                    }
-                }
-                return res.status(400).json({
-                    status: 400,
-                    success: false,
-                    message: `BAD_REQUEST_REQUIRE_NOT_NULL_"${key}"`,
-                });
             }
             catch (error) {
                 console.log(error);
@@ -121,49 +132,12 @@ function IsRequirementReq(key, scope) {
     };
 }
 exports.IsRequirementReq = IsRequirementReq;
-function IsRequirementFiles(fields) {
-    return function (target, propertyKey, descriptor) {
-        const originalMethod = descriptor.value;
-        descriptor.value = function (...args) {
-            const [req, res, next] = args;
-            try {
-                const files = req.files;
-                const firstCondition = fields.every((file) => Object.keys(files).indexOf(file) !== -1);
-                if (firstCondition) {
-                    return originalMethod.apply(this, args);
-                }
-                else {
-                    const keyArray = Object.keys(files);
-                    keyArray.forEach((key) => {
-                        const file = files[key];
-                        (0, deleteFile_helper_1.default)(file[0]);
-                    });
-                    return res.status(400).json({
-                        status: 400,
-                        success: false,
-                        message: 'BAD_REQUEST_UPLOAD_FILE',
-                    });
-                }
-            }
-            catch (error) {
-                console.log(error);
-                return res.status(400).json({
-                    status: 400,
-                    success: false,
-                    message: 'BAD_REQUEST_UPLOAD_FILE',
-                });
-            }
-        };
-        return descriptor;
-    };
-}
-exports.IsRequirementFiles = IsRequirementFiles;
 function IsRequirementEmail(field) {
     return function (target, propertyKey, descriptor) {
         const originalMethod = descriptor.value;
         descriptor.value = function (req, res, ...args) {
             const email = req.body[field];
-            const trimEmail = email ?? '';
+            const trimEmail = email !== null && email !== void 0 ? email : '';
             if (trimEmail && (0, regex_util_1.regexEmail)(email)) {
                 return originalMethod.apply(this, [req, res, ...args]);
             }
@@ -176,3 +150,4 @@ function IsRequirementEmail(field) {
     };
 }
 exports.IsRequirementEmail = IsRequirementEmail;
+//# sourceMappingURL=IsRequirementRequest.decorator.js.map

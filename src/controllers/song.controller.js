@@ -8,63 +8,135 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_decorator_1 = require("../decorators/index.decorator");
-const song_service_1 = __importDefault(require("../services/song.service"));
-const index_enum_1 = require("../constraints/enums/index.enum");
+const index_decorator_1 = require("@/decorators/index.decorator");
+const index_instance_1 = require("@/instances/index.instance");
 const requirementFields = [
     'title',
-    'composerReference',
+    'uploadId',
     'publish',
     'genresReference',
     'performers',
 ];
 class SongController {
-    static async getAll(req, res) {
-        const songs = await song_service_1.default.getAll();
-        return res.status(songs.status).json(songs);
-    }
-    static async getById(req, res) {
-        const _id = req.params.id;
-        const song = await song_service_1.default.getById(_id);
-        return res.status(song.status).json(song);
-    }
-    static async getStreamSong(req, res) {
-        const { id } = req.params;
-        const range = req.headers.range;
-        const songService = await song_service_1.default.getFsStreamSong(id, range);
-        if (!songService.success)
-            return res.status(songService.status).json(songService);
-        res.writeHead(songService.status, {
-            ...songService.data?.resHeader,
+    constructor() { }
+    getAll(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const songs = yield index_instance_1.songService.getAll();
+            return res.status(songs.status).json(songs);
         });
-        songService.data?.fileStream.pipe(res);
     }
-    static async middlewareCreateSong(req, res, next) {
-        const { title, composerReference } = req.body;
-        const { thumbnail, fileSong } = req.files;
-        const validate = await song_service_1.default.validateTitleUploadSong(title, composerReference, {
-            fileSong: fileSong[0],
-            thumbnail: thumbnail[0],
+    getById(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const _id = req.params.id;
+            const song = yield index_instance_1.songService.getById(_id);
+            return res.status(song.status).json(song);
         });
-        if (validate.success) {
-            return next();
-        }
-        return res.status(validate.status).json(validate);
     }
-    static async create(req, res) {
-        const payload = {
-            ...req.body,
-        };
-        const { thumbnail, fileSong } = req.files;
-        const createSong = await song_service_1.default.create({
-            thumbnail: thumbnail[0],
-            fileSong: fileSong[0],
-        }, payload);
-        return res.status(createSong.status).json(createSong);
+    getSongJustReleased(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const item = req.query.item;
+            const songs = yield index_instance_1.songService.getJustReleased(parseInt(item));
+            return res.status(songs.status).json(songs);
+        });
+    }
+    getSongTop(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const item = req.query.item;
+            const song = yield index_instance_1.songService.getTopView(parseInt(item));
+            return res.status(song.status).json(song);
+        });
+    }
+    suggest(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { page, size } = req.query;
+            const suggestService = yield index_instance_1.songService.suggest(Number.parseInt(page || '1'), Number.parseInt(size || '10'));
+            return res.status(suggestService.status).json(suggestService);
+        });
+    }
+    getStreamSong(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const range = req.headers.range;
+            const getStreamSongService = yield index_instance_1.songService.getStreamSong(id, range);
+            if (!getStreamSongService.success)
+                return res
+                    .status(getStreamSongService.status)
+                    .json(getStreamSongService);
+            const { data } = getStreamSongService;
+            const streamData = data &&
+                data.instanceContent &&
+                data.instanceContent.Body;
+            if (streamData) {
+                res.writeHead(getStreamSongService.status, Object.assign({}, data === null || data === void 0 ? void 0 : data.resHeader));
+                streamData.pipe(res);
+            }
+            else {
+                delete getStreamSongService.data;
+                return res
+                    .status(getStreamSongService.status)
+                    .json(getStreamSongService);
+            }
+        });
+    }
+    search(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const title = req.query.title;
+            const song = yield index_instance_1.songService.search(title);
+            return res.status(song.status).json(song);
+        });
+    }
+    create(req, res) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function* () {
+            const payload = req.body;
+            Object.assign(payload, {
+                userReference: (_b = (_a = res.locals.memberDecoded) === null || _a === void 0 ? void 0 : _a._id) !== null && _b !== void 0 ? _b : '',
+            });
+            const createSongService = yield index_instance_1.songService.create(payload);
+            return res.status(createSongService.status).json(createSongService);
+        });
+    }
+    update(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            if (Object.keys(req.body).length === 0)
+                return res.status(400).json({
+                    status: 400,
+                    success: false,
+                    message: 'BAD_REQUEST',
+                });
+            const payload = req.body;
+            const updateSongService = yield index_instance_1.songService.update(id, payload);
+            return res.status(updateSongService.status).json(updateSongService);
+        });
+    }
+    forceDelete(req, res) {
+        var _a;
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const userId = (_a = res.locals.memberDecoded) === null || _a === void 0 ? void 0 : _a._id;
+            const forceDeleteSongService = yield index_instance_1.songService.forceDelete(id, userId !== null && userId !== void 0 ? userId : '');
+            return res
+                .status(forceDeleteSongService.status)
+                .json(forceDeleteSongService);
+        });
+    }
+    increaseView(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const _id = req.params.id;
+            const increaseService = yield index_instance_1.songService.increaseViewQueue(_id);
+            return res.status(increaseService.status).json(increaseService);
+        });
     }
 }
 exports.default = SongController;
@@ -73,23 +145,53 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
-], SongController, "getById", null);
+], SongController.prototype, "getById", null);
+__decorate([
+    (0, index_decorator_1.IsRequirementReq)('item', 'query'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], SongController.prototype, "getSongJustReleased", null);
+__decorate([
+    (0, index_decorator_1.IsRequirementReq)('item', 'query'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], SongController.prototype, "getSongTop", null);
+__decorate([
+    (0, index_decorator_1.IsRequirementReq)('id', 'params'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], SongController.prototype, "getStreamSong", null);
+__decorate([
+    (0, index_decorator_1.IsRequirementReq)('title', 'query'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], SongController.prototype, "search", null);
+__decorate([
+    (0, index_decorator_1.IsRequirementReq)(requirementFields, 'body'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], SongController.prototype, "create", null);
+__decorate([
+    (0, index_decorator_1.IsRequirementReq)('id', 'params'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], SongController.prototype, "update", null);
+__decorate([
+    (0, index_decorator_1.IsRequirementReq)('id', 'params'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], SongController.prototype, "forceDelete", null);
 __decorate([
     (0, index_decorator_1.IsRequirementTypeId)('id', 'params'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
-], SongController, "getStreamSong", null);
-__decorate([
-    (0, index_decorator_1.IsRequirementReq)(requirementFields, 'body'),
-    (0, index_decorator_1.IsRequirementTypeId)([
-        'composerReference',
-        'genresReference',
-        'albumReference',
-        'performers',
-    ], 'body'),
-    (0, index_decorator_1.IsRequirementFiles)([index_enum_1.uploadFiledEnum.FileSong, index_enum_1.uploadFiledEnum.Thumbnail]),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object, Function]),
-    __metadata("design:returntype", Promise)
-], SongController, "middlewareCreateSong", null);
+], SongController.prototype, "increaseView", null);
+//# sourceMappingURL=song.controller.js.map

@@ -33,8 +33,10 @@ const playlistSchema = new mongoose_1.Schema({
             ref: 'song',
         },
     ],
+    userReference: { type: String, required: true, ref: 'user' },
 }, {
     _id: false,
     timestamps: true,
 });
 exports.default = mongoose_1.default.model('playlist', playlistSchema);
+//# sourceMappingURL=playlist.schema.js.map

@@ -12,35 +12,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("module-alias/register");
+//
 const class_validator_1 = require("class-validator");
-const IsGenerateCollection_decorator_1 = __importDefault(require("../decorators/IsGenerateCollection.decorator"));
+const IsGenerateCollection_decorator_1 = __importDefault(require("@/decorators/IsGenerateCollection.decorator"));
 class UserValidation {
-    _id;
-    email;
-    name;
-    refreshToken;
-    avatar;
-    composerReference;
-    isRegistrationForm;
-    locale;
-    password;
-    favoriteListReference;
-    historyReference;
-    playlistReference;
     constructor(payload) {
         this._id = payload._id;
         this.email = payload.email;
         this.name = payload.name;
         this.refreshToken = payload.refreshToken;
         this.password = payload.password;
-        this.avatar = payload.avatar;
-        this.composerReference = payload.composerReference;
+        this.avatarUrl = payload.avatarUrl;
+        this.avatarS3 = payload.avatarS3;
         this.favoriteListReference = payload.favoriteListReference;
         this.historyReference = payload.historyReference;
-        this.playlistReference = payload.playlistReference;
         this.isRegistrationForm = payload.isRegistrationForm;
         this.locale = payload.locale;
+        this.playlistReference = payload.playlistReference;
+        this.role = payload.role;
+        this.nickname = payload.nickname;
+        this.albumsReference = payload.albumsReference;
+        this.songsReference = payload.songsReference;
+        this.isPendingUpgradeComposer = payload.isPendingUpgradeComposer;
     }
 }
 exports.default = UserValidation;
@@ -68,14 +61,12 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], UserValidation.prototype, "avatar", void 0);
+], UserValidation.prototype, "avatarUrl", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
-    (0, IsGenerateCollection_decorator_1.default)({
-        message: 'Filed _id in collection Composer is empty',
-    }),
-    __metadata("design:type", String)
-], UserValidation.prototype, "composerReference", void 0);
+    (0, class_validator_1.IsObject)(),
+    __metadata("design:type", Object)
+], UserValidation.prototype, "avatarS3", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsBoolean)(),
@@ -107,8 +98,32 @@ __decorate([
 ], UserValidation.prototype, "historyReference", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
-    (0, IsGenerateCollection_decorator_1.default)({
-        message: 'Filed _id in collection Playlist is empty',
-    }),
+    (0, IsGenerateCollection_decorator_1.default)(),
     __metadata("design:type", Array)
 ], UserValidation.prototype, "playlistReference", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UserValidation.prototype, "role", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UserValidation.prototype, "nickname", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, IsGenerateCollection_decorator_1.default)(),
+    __metadata("design:type", Array)
+], UserValidation.prototype, "albumsReference", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, IsGenerateCollection_decorator_1.default)(),
+    __metadata("design:type", Array)
+], UserValidation.prototype, "songsReference", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsBoolean)(),
+    __metadata("design:type", Boolean)
+], UserValidation.prototype, "isPendingUpgradeComposer", void 0);
+//# sourceMappingURL=user.filter.js.map

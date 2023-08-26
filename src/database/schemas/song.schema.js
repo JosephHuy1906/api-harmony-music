@@ -27,17 +27,15 @@ const mongoose_1 = __importStar(require("mongoose"));
 const songSchema = new mongoose_1.Schema({
     _id: { type: String, required: true },
     title: { type: String, required: true },
-    duration: { type: Number, required: true },
     publish: { type: Date, required: true },
-    thumbnail: { type: String, required: true, ref: 'thumbnail' },
     performers: [
         {
             type: String,
-            ref: 'composer',
+            ref: 'user',
             required: true,
         },
     ],
-    composerReference: { type: String, required: true, ref: 'composer' },
+    userReference: { type: String, required: true, ref: 'user' },
     albumReference: [{ type: String, ref: 'album' }],
     genresReference: [
         {
@@ -46,10 +44,29 @@ const songSchema = new mongoose_1.Schema({
             required: true,
         },
     ],
-    songPathReference: { type: String, required: true, ref: 'songPath' },
+    thumbnailUrl: { type: String, required: true },
+    thumbnail: {
+        type: {
+            bucketName: { type: String, required: true },
+            keyObject: { type: String, required: true },
+            contentType: { type: String, required: true },
+        },
+        _id: false,
+        required: true,
+    },
+    audio: {
+        type: {
+            bucketName: { type: String, required: true },
+            keyObject: { type: String, required: true },
+            contentType: { type: String, required: true },
+        },
+        _id: false,
+        required: true,
+    },
     views: { type: Number, default: 0 },
 }, {
     _id: false,
     timestamps: true,
 });
 exports.default = mongoose_1.default.model('song', songSchema);
+//# sourceMappingURL=song.schema.js.map

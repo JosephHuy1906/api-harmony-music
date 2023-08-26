@@ -6,3 +6,4 @@ var uploadFiledEnum;
     uploadFiledEnum["Thumbnail"] = "thumbnail";
 })(uploadFiledEnum || (uploadFiledEnum = {}));
 exports.default = uploadFiledEnum;
+//# sourceMappingURL=uploadField.enum.js.map

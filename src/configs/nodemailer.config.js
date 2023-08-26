@@ -20,3 +20,4 @@ const transporter = nodemailer_1.default.createTransport({
     },
 });
 exports.default = transporter;
+//# sourceMappingURL=nodemailer.config.js.map
