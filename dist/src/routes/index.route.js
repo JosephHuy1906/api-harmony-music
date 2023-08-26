@@ -1,0 +1,32 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const admin_route_1 = __importDefault(require("./admin.route"));
+const album_route_1 = __importDefault(require("./album.route"));
+const auth_route_1 = __importDefault(require("./auth.route"));
+const favorite_route_1 = __importDefault(require("./favorite.route"));
+const genre_route_1 = __importDefault(require("./genre.route"));
+const history_route_1 = __importDefault(require("./history.route"));
+const playlist_route_1 = __importDefault(require("./playlist.route"));
+const s3_route_1 = __importDefault(require("./s3.route"));
+const song_route_1 = __importDefault(require("./song.route"));
+const thumbnail_route_1 = __importDefault(require("./thumbnail.route"));
+const user_route_1 = __importDefault(require("./user.route"));
+const rootRouter = (0, express_1.Router)();
+rootRouter.use('/signedUrlS3', s3_route_1.default);
+rootRouter.use('/thumbnail', thumbnail_route_1.default);
+rootRouter.use('/playlist', playlist_route_1.default);
+rootRouter.use('/favorite', favorite_route_1.default);
+rootRouter.use('/history', history_route_1.default);
+rootRouter.use('/genre', genre_route_1.default);
+rootRouter.use('/album', album_route_1.default);
+rootRouter.use('/song', song_route_1.default);
+rootRouter.use('/auth', auth_route_1.default);
+rootRouter.use('/user', user_route_1.default);
+rootRouter.use('/admin', admin_route_1.default);
+rootRouter.use('/', (req, res) => res.end());
+exports.default = rootRouter;
+//# sourceMappingURL=index.route.js.map

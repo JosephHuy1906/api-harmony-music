@@ -1,0 +1,19 @@
+[{
+  "_id": "374e5329-c9e2-490b-b444-c835472a4cb5",
+  "name": "Tuan Cao",
+  "email": "vantuan26072002@gmail.com",
+  "avatar": "https://fullstack.edu.vn/static/media/fallback-avatar.155cdb2376c5d99ea151.jpg",
+  "locale": "vi",
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIzNzRlNTMyOS1jOWUyLTQ5MGItYjQ0NC1jODM1NDcyYTRjYjUiLCJlbWFpbCI6InZhbnR1YW4yNjA3MjAwMkBnbWFpbC5jb20iLCJpYXQiOjE2ODY0MDcxNjQsImV4cCI6MTY4ODk5OTE2NH0.raXA1M_1bTP8dxr6vhSn-UnOC8u7L73IsiZhd95Jm6I",
+  "playlistReference": [],
+  "isRegistrationForm": true,
+  "password": "$2b$10$/XPYMTbgXXHLiUZGvPLlWuMxPHqAXyCQkqmTK4Y8/EJCa2TSpHsPW",
+  "createdAt": {
+    "$date": "2023-06-10T14:26:04.624Z"
+  },
+  "updatedAt": {
+    "$date": "2023-06-10T14:30:57.923Z"
+  },
+  "__v": 0,
+  "composerReference": "181ca308-f791-4ff5-8041-36c046d4023f"
+}]
