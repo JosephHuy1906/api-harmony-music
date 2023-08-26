@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const role_enum_1 = require("../constraints/enums/role.enum");
+const role_enum_1 = require("../../constraints/enums/role.enum");
 const mongoose_1 = __importStar(require("mongoose"));
 const userSchema = new mongoose_1.Schema({
     _id: { type: String, required: true },
