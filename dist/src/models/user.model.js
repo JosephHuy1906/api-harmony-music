@@ -12,8 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const role_enum_1 = require("@/constraints/enums/role.enum");
-const user_schema_1 = __importDefault(require("@/database/schemas/user.schema"));
+const role_enum_1 = require("../constraints/enums/role.enum");
+const user_schema_1 = __importDefault(require("../database/schemas/user.schema"));
 class UserModel {
     getAllByUser() {
         return __awaiter(this, void 0, void 0, function* () {

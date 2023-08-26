@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_instance_1 = require("@/instances/index.instance");
+const index_instance_1 = require("../instances/index.instance");
 function verificationEmailWithForm(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {

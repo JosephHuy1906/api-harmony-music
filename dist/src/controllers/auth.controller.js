@@ -18,11 +18,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const common_enum_1 = require("@/constraints/enums/common.enum");
-const redirect_enum_1 = require("@/constraints/enums/redirect.enum");
-const index_decorator_1 = require("@/decorators/index.decorator");
-const environment_1 = require("@/environments/environment");
-const index_instance_1 = require("@/instances/index.instance");
+const common_enum_1 = require("../constraints/enums/common.enum");
+const redirect_enum_1 = require("../constraints/enums/redirect.enum");
+const index_decorator_1 = require("../decorators/index.decorator");
+const environment_1 = require("../environments/environment");
+const index_instance_1 = require("../instances/index.instance");
 class AuthController {
     constructor() { }
     generateRefreshToken(req, res) {

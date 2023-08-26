@@ -14,14 +14,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const uuid_1 = require("uuid");
-const nodemailer_config_1 = __importDefault(require("@/configs/nodemailer.config"));
-const role_enum_1 = require("@/constraints/enums/role.enum");
-const s3_enum_1 = require("@/constraints/enums/s3.enum");
-const user_filter_1 = __importDefault(require("@/filters/user.filter"));
-const validate_helper_1 = __importDefault(require("@/helpers/validate.helper"));
-const index_instance_1 = require("@/instances/index.instance");
-const service_instance_1 = require("@/instances/service.instance");
-const jwtToken_util_1 = require("@/utils/jwtToken.util");
+const nodemailer_config_1 = __importDefault(require("../configs/nodemailer.config"));
+const role_enum_1 = require("../constraints/enums/role.enum");
+const s3_enum_1 = require("../constraints/enums/s3.enum");
+const user_filter_1 = __importDefault(require("../filters/user.filter"));
+const validate_helper_1 = __importDefault(require("../helpers/validate.helper"));
+const index_instance_1 = require("../instances/index.instance");
+const service_instance_1 = require("../instances/service.instance");
+const jwtToken_util_1 = require("../utils/jwtToken.util");
 class UserService {
     constructor() { }
     getAllByComposer() {

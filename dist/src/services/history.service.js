@@ -13,10 +13,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const uuid_1 = require("uuid");
-const action_enum_1 = require("@/constraints/enums/action.enum");
-const history_filter_1 = __importDefault(require("@/filters/history.filter"));
-const validate_helper_1 = __importDefault(require("@/helpers/validate.helper"));
-const index_instance_1 = require("@/instances/index.instance");
+const action_enum_1 = require("../constraints/enums/action.enum");
+const history_filter_1 = __importDefault(require("../filters/history.filter"));
+const validate_helper_1 = __importDefault(require("../helpers/validate.helper"));
+const index_instance_1 = require("../instances/index.instance");
 class HistoryService {
     getInformation(userId) {
         var _a;

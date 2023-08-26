@@ -12,10 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const role_enum_1 = require("@/constraints/enums/role.enum");
-const environment_1 = require("@/environments/environment");
-const index_instance_1 = require("@/instances/index.instance");
-const jwtToken_util_1 = require("@/utils/jwtToken.util");
+const role_enum_1 = require("../constraints/enums/role.enum");
+const environment_1 = require("../environments/environment");
+const index_instance_1 = require("../instances/index.instance");
+const jwtToken_util_1 = require("../utils/jwtToken.util");
 const dotenv_1 = require("dotenv");
 const passport_1 = __importDefault(require("passport"));
 const passport_facebook_1 = require("passport-facebook");

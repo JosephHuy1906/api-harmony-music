@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const s3_controller_1 = __importDefault(require("@/controllers/s3.controller"));
-const authVerifyToken_middleware_1 = require("@/middlewares/authVerifyToken.middleware");
+const s3_controller_1 = __importDefault(require("../controllers/s3.controller"));
+const authVerifyToken_middleware_1 = require("../middlewares/authVerifyToken.middleware");
 const s3ControllerInstance = new s3_controller_1.default();
 const router = (0, express_1.Router)();
 router

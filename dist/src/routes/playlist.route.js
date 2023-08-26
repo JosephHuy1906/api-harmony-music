@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const playlist_controller_1 = __importDefault(require("@/controllers/playlist.controller"));
-const authVerifyToken_middleware_1 = require("@/middlewares/authVerifyToken.middleware");
+const playlist_controller_1 = __importDefault(require("../controllers/playlist.controller"));
+const authVerifyToken_middleware_1 = require("../middlewares/authVerifyToken.middleware");
 const express_1 = require("express");
 const router = (0, express_1.Router)();
 const playlistController = new playlist_controller_1.default();

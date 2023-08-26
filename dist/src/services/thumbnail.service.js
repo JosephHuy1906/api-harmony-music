@@ -13,8 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sharp_1 = __importDefault(require("sharp"));
-const s3_enum_1 = require("@/constraints/enums/s3.enum");
-const index_instance_1 = require("@/instances/index.instance");
+const s3_enum_1 = require("../constraints/enums/s3.enum");
+const index_instance_1 = require("../instances/index.instance");
 class ThumbnailService {
     constructor() { }
     getThumbnailSong(slugId, resize) {

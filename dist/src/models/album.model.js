@@ -12,8 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const action_enum_1 = require("@/constraints/enums/action.enum");
-const album_schema_1 = __importDefault(require("@/database/schemas/album.schema"));
+const action_enum_1 = require("../constraints/enums/action.enum");
+const album_schema_1 = __importDefault(require("../database/schemas/album.schema"));
 class AlbumModel {
     getAll() {
         return __awaiter(this, void 0, void 0, function* () {

@@ -18,8 +18,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_decorator_1 = require("@/decorators/index.decorator");
-const index_instance_1 = require("@/instances/index.instance");
+const index_decorator_1 = require("../decorators/index.decorator");
+const index_instance_1 = require("../instances/index.instance");
 class AlbumController {
     constructor() { }
     getAlbumNewWeek(req, res) {

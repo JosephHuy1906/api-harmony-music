@@ -15,11 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = require("dotenv");
 const uuid_1 = require("uuid");
 (0, dotenv_1.config)();
-const action_enum_1 = require("@/constraints/enums/action.enum");
-const song_filter_1 = __importDefault(require("@/filters/song.filter"));
-const validate_helper_1 = __importDefault(require("@/helpers/validate.helper"));
-const index_instance_1 = require("@/instances/index.instance");
-const index_queue_1 = __importDefault(require("@/queues/index.queue"));
+const action_enum_1 = require("../constraints/enums/action.enum");
+const song_filter_1 = __importDefault(require("../filters/song.filter"));
+const validate_helper_1 = __importDefault(require("../helpers/validate.helper"));
+const index_instance_1 = require("../instances/index.instance");
+const index_queue_1 = __importDefault(require("../queues/index.queue"));
 class SongService {
     constructor() {
         this.taskQueue = new index_queue_1.default(10);

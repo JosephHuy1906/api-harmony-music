@@ -7,7 +7,7 @@ const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = require("dotenv");
 const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
-const index_route_1 = __importDefault(require("@/routes/index.route"));
+const index_route_1 = __importDefault(require("./routes/index.route"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const connect_db_1 = __importDefault(require("./database/connect.db"));
 (0, dotenv_1.config)();

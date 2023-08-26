@@ -13,10 +13,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const uuid_1 = require("uuid");
-const action_enum_1 = require("@/constraints/enums/action.enum");
-const playlist_filter_1 = __importDefault(require("@/filters/playlist.filter"));
-const validate_helper_1 = __importDefault(require("@/helpers/validate.helper"));
-const model_instance_1 = require("@/instances/model.instance");
+const action_enum_1 = require("../constraints/enums/action.enum");
+const playlist_filter_1 = __importDefault(require("../filters/playlist.filter"));
+const validate_helper_1 = __importDefault(require("../helpers/validate.helper"));
+const model_instance_1 = require("../instances/model.instance");
 class PlaylistService {
     constructor() { }
     getListByUserId(userId) {

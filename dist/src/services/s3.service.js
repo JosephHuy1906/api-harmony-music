@@ -12,10 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const s3_config_1 = __importDefault(require("@/configs/s3.config"));
-const s3_enum_1 = require("@/constraints/enums/s3.enum");
-const index_instance_1 = require("@/instances/index.instance");
-const generateRandomKey_util_1 = __importDefault(require("@/utils/generateRandomKey.util"));
+const s3_config_1 = __importDefault(require("../configs/s3.config"));
+const s3_enum_1 = require("../constraints/enums/s3.enum");
+const index_instance_1 = require("../instances/index.instance");
+const generateRandomKey_util_1 = __importDefault(require("../utils/generateRandomKey.util"));
 const client_s3_1 = require("@aws-sdk/client-s3");
 const s3_request_presigner_1 = require("@aws-sdk/s3-request-presigner");
 const uuid_1 = require("uuid");

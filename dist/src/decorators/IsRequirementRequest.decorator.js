@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IsRequirementEmail = exports.IsRequirementReq = exports.IsRequirementTypeId = void 0;
-const regex_util_1 = require("@/utils/regex.util");
+const regex_util_1 = require("../utils/regex.util");
 function IsRequirementTypeId(key, scope) {
     return function (target, propertyKey, descriptor) {
         const originalMethod = descriptor.value;

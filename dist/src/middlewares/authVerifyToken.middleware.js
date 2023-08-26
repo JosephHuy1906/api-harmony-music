@@ -10,9 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authenticationAdmin = exports.authenticationComposer = exports.authenticationUser = void 0;
-const role_enum_1 = require("@/constraints/enums/role.enum");
-const index_instance_1 = require("@/instances/index.instance");
-const jwtToken_util_1 = require("@/utils/jwtToken.util");
+const role_enum_1 = require("../constraints/enums/role.enum");
+const index_instance_1 = require("../instances/index.instance");
+const jwtToken_util_1 = require("../utils/jwtToken.util");
 function authenticationUser(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {

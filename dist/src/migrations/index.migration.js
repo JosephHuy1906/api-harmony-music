@@ -14,11 +14,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require('dotenv').config();
 const process_1 = require("process");
-const connect_db_1 = __importDefault(require("@/database/connect.db"));
-const album_migration_1 = __importDefault(require("@/migrations/album.migration"));
-const genre_migration_1 = __importDefault(require("@/migrations/genre.migration"));
-const song_migration_1 = __importDefault(require("@/migrations/song.migration"));
-const user_migration_1 = __importDefault(require("@/migrations/user.migration"));
+const connect_db_1 = __importDefault(require("../database/connect.db"));
+const album_migration_1 = __importDefault(require("./album.migration"));
+const genre_migration_1 = __importDefault(require("./genre.migration"));
+const song_migration_1 = __importDefault(require("./song.migration"));
+const user_migration_1 = __importDefault(require("./user.migration"));
 const accountPendingVerify_migration_1 = __importDefault(require("./accountPendingVerify.migration"));
 const history_migration_1 = __importDefault(require("./history.migration"));
 const playlist_migration_1 = __importDefault(require("./playlist.migration"));

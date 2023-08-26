@@ -18,8 +18,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const IsRequirementRequest_decorator_1 = require("@/decorators/IsRequirementRequest.decorator");
-const index_instance_1 = require("@/instances/index.instance");
+const IsRequirementRequest_decorator_1 = require("../decorators/IsRequirementRequest.decorator");
+const index_instance_1 = require("../instances/index.instance");
 class S3Controller {
     constructor() { }
     postSignedUrlS3Audio(req, res) {

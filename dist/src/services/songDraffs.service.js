@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const currentStep_enum_1 = require("@/constraints/enums/currentStep.enum");
-const index_instance_1 = require("@/instances/index.instance");
+const currentStep_enum_1 = require("../constraints/enums/currentStep.enum");
+const index_instance_1 = require("../instances/index.instance");
 class SongDraftService {
     constructor() { }
     getListSongDraftById(userId) {

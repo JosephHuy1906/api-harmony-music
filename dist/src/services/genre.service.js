@@ -10,8 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const uuid_1 = require("uuid");
-const action_enum_1 = require("@/constraints/enums/action.enum");
-const index_instance_1 = require("@/instances/index.instance");
+const action_enum_1 = require("../constraints/enums/action.enum");
+const index_instance_1 = require("../instances/index.instance");
 class GenreService {
     create(payload) {
         return __awaiter(this, void 0, void 0, function* () {

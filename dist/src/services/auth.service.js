@@ -14,9 +14,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const role_enum_1 = require("@/constraints/enums/role.enum");
-const index_instance_1 = require("@/instances/index.instance");
-const jwtToken_util_1 = require("@/utils/jwtToken.util");
+const role_enum_1 = require("../constraints/enums/role.enum");
+const index_instance_1 = require("../instances/index.instance");
+const jwtToken_util_1 = require("../utils/jwtToken.util");
 class AuthService {
     constructor() { }
     generateRefererToken(currentRefreshToken) {

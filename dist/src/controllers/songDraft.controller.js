@@ -18,8 +18,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const IsRequirementRequest_decorator_1 = require("@/decorators/IsRequirementRequest.decorator");
-const service_instance_1 = require("@/instances/service.instance");
+const IsRequirementRequest_decorator_1 = require("../decorators/IsRequirementRequest.decorator");
+const service_instance_1 = require("../instances/service.instance");
 class SongDraftsController {
     constructor() { }
     getSongDraftByUserId(req, res) {
